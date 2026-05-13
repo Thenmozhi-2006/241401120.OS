@@ -1,32 +1,32 @@
-#include <stdio.h>
+#include<stdio.h>
 int main(){
 	int n,i,j;
-	printf("enter the no of process");
+	printf("Enter the number of process");
 	scanf("%d",&n);
-	int at[n] ,ct[n] ,bt[n] ,tat[n] ,wt[n];
-	for (i=0;i<n;i++){
-		printf("enter the arrival and burst time");
-		scanf("%d %d" ,&at[i],&bt[i]);
 
+	int at[n],bt[n],ct[n],tat[n],wt[n];
+	for(i=0;i<n;i++){
+		printf("Enter the arrival and burst time: ");
+		scanf("%d %d",&at[i],&bt[i]);
 	}
-	float total_tat=0,total_wt=0;
-	ct[0]=at[0]+bt[0];
+	float total_tat=0,total_wt =0;
+	ct[0] = at[0]+bt[0];
 	for(i=1;i<n;i++){
 		if(ct[i]<at[i]){
 			ct[i]=at[i]+bt[i];
-		}
-		else{
+		}else{
 			ct[i]=ct[i-1]+bt[i];
 		}
 	}
 	for(i=0;i<n;i++){
-		tat[i]=ct[i]-at[i];
-		wt[i]=tat[i]-bt[i];
-		total_tat=total_tat+tat[i];
-		total_wt=total_wt+wt[i];
+		tat[i] = ct[i]-at[i];
+		wt[i] = tat[i]-bt[i];
+
+		total_tat = total_tat + tat[i];
+		total_wt = total_wt + wt[i];
 	}
-	printf("\n Average turnaround time:%.2f",total_tat/n);
-	printf("\n Average waiting time :%.2f",total_wt/n);
+	printf("\n Average turnaround time: %.2f",total_tat/n);
+	printf("\n Average waiting time: %.2f\n",total_wt/n);
+
 	return 0;
 }
-
